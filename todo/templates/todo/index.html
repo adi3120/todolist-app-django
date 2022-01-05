@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO app</title>
+
+    <style>
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <h2>DJANGO TODO LIST</h2>
+    <form action="" method="post">
+        {%csrf_token%}
+        <input type="text" name="title" id="myInput" placeholder="Title...">
+        <button type="submit">Add</button>
+    </form>
+
+
+    <div class="listitem">
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+            </tr>
+            {% for i in todo reversed%}
+            <tr>
+                <td>{{i.title}}</td>
+                <td>{{i.date}}</td>
+                <td>
+                    <a href="{% url 'todo:delete' i.id %}">delete</a>
+                </td>
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+
+
+
+</body>
+
+</html>
